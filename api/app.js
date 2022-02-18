@@ -1,5 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
+
+const compress = require('compression');
+const cors = require('cors');
 
 const connectDB = require('./connectDB');
 
@@ -11,6 +15,9 @@ connectDB();
 
 app.use(bodyParser.json());
 app.use(bodyParser.text());
+
+app.use(cors());
+app.use(compress());
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -38,6 +45,10 @@ app.use((error, req, res, next) => {
 
 
 app.use('/metrics', metricsRoutes);
+
+app.get('/perfanalytics.js', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../perfanalytics-lib', 'bundle.js' ))
+})
 
 app.listen(3001, () => {
     console.log('Server is running ' + 3001);

@@ -1,0 +1,14 @@
+{
+  "name": "perfanalytics-js",
+  "version": "1.0.0",
+  "description": "Js lib for collecting performance data",
+  "main": "perfAnalytics.js",
+  "scripts": {
+    "build": "./node_modules/rollup/dist/bin/rollup -c"
+  },
+  "author": "Vlad Logvinov",
+  "license": "MIT",
+  "dependencies": {
+    "rollup": "^2.67.3"
+  }
+}
